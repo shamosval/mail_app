@@ -1,0 +1,100 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Mail{% endblock %}</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+        >
+        <link rel="stylesheet" href="{% static 'mail/styles.css' %}">
+        <style>
+            body {
+                background-color: #F6F8FC;
+
+            }
+
+            .main-div {
+                border-radius: 15px;
+                background-color: white;
+
+            }
+
+            #compose {
+                border-radius: 15px;
+                background-color: #C3E7FD;
+                width: 180px;
+            }
+
+            #compose:hover {
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); 
+                transition: box-shadow 0.3s;
+
+            }
+
+            .custom-btn {
+                background-color: #F6F8FC;
+                border: none;
+                outline: none;
+                
+                cursor: pointer;
+                
+                text-decoration: none;
+                
+                border-top-right-radius: 15px;
+                border-bottom-right-radius: 15px;
+            }
+
+            .custom-btn:not(.active):hover {
+
+                background-color: #EAEBEF;
+            }
+
+            .hover-email:hover {
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); 
+                transition: box-shadow 0.3s;
+            }
+
+            .active {
+                background-color: #D3E3FD;
+            }
+
+            .reply-btn-round {
+                border-radius: 18px;
+                width: 150px;
+            }
+
+            .send-btn-round {
+                border-radius: 18px;
+                width: 150px;
+            }
+
+            .reply-btn-round:hover {
+                background-color: #F2F2F2;
+                color: #4D504F;
+            }
+
+            .vsyach {
+                cursor: pointer;
+                -webkit-text-stroke: 0.5px;
+                color: #4D504F;
+            }
+
+            .round-custom {
+                border-radius: 20px;
+            }
+
+            
+        </style>
+        {% block script %}
+        {% endblock %}
+
+    </head>
+    <body>
+
+            {% block body %}
+            {% endblock %}
+
+    </body>
+</html>

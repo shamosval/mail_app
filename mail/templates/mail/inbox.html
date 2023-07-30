@@ -1,0 +1,146 @@
+{% extends "mail/layout.html" %}
+{% load static %}
+
+{% block body %}
+    
+    {# Top navigation #}
+
+    <nav class=" d-flex justify-content-between align-items-center p-3">
+       
+
+       {# Logo 'CS50mail' #}
+       <a href="{% url 'index' %}" class="navbar-brand">
+           <h1 style="" class="display-6 fw-bold">
+                  
+               <span style="color: #4285F4;">M</span>   
+               <span style="color: #DB4437;">a</span>   
+               <span style="color: #F4B400;">i</span>   
+               <span style="color: #0F9D58;">l</span>   
+               
+           </h1>
+       </a>
+
+       <div class="text-end">
+        
+           {# Signed in as #}
+           <p class="mb-0"> Signed in as <strong>{{ request.user.email }}</strong></p>
+
+
+           {# Log out link #}
+           <p ><a class="small text-decoration-none text-secondary-emphasis"  href="{% url 'logout' %}"><i style="cursor: pointer" class="bi bi-box-arrow-right"></i> Sign out</a></p>
+
+       </div>
+
+    </nav>
+
+    <div class="container-lg mx-lg-2 px-1">
+        
+
+        <div class="row me-1">
+            
+            {# Left navbar #}
+            <div class="col-4 mt-2">
+
+                <div class="d-flex flex-column" >
+                    
+                    <button class="btn btn-sm p-3 mb-4"  id="compose">
+                        <i class="bi bi-pencil pe-2"></i>
+                        Compose
+                    </button>
+
+
+                    <button class="inbox custom-btn p-2 d-flex justify-content-between align-items-center mb-1" id="inbox">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-inbox-fill ps-2 pe-4"></i>
+                            <p class="mb-0">Inbox</p>
+                        </div>
+
+                        <div class="pe-lg-4 pe-2"><strong id="counter_unread"></strong></div>
+                    </button>
+                        
+
+                    
+                    <button class="sent custom-btn p-2 d-flex justify-content-start align-items-center mb-1" id="sent">
+                        <i class="bi bi-send ps-2 pe-4"></i>
+                        Sent
+                    </button>
+                    
+                    <button class="archive custom-btn p-2 d-flex justify-content-start align-items-center mb-1" id="archived">
+                        <i class="bi bi-archive ps-2 pe-4"></i>
+                        Archived
+                    </button>
+                </div>
+
+            </div>
+
+
+            {# Column with content #}
+            <div class="col-8 mt-2 main-div p-0" >
+                
+                
+                 {# View table with emails #}
+                <div id="emails-view" class="">
+                </div>    
+
+                {# View single email#}
+                <div id="single-email">  
+                </div>
+
+                {# View compose fields #}
+                <div class="p-3" id="compose-view">
+                    <h3 style="color: #4F5251; font-family: sans-serif;">New Message</h3>
+
+                    <form method="post" id="compose-form">
+                        {% csrf_token %}
+                        
+                        <div class="form-group mb-2">
+                            <input id="compose-recipients" class="form-control" placeholder="Recipients">
+                        </div>
+                        <div class="form-group mb-2">
+                            <input class="form-control" id="compose-subject" placeholder="Subject">
+                        </div>
+                        <textarea class="form-control mb-2" rows="8" id="compose-body" atufocus></textarea>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <input type="submit" class="btn btn-primary send-btn-round p-2" value="Send" />
+                                <div class="ps-3">
+
+                                    <i class="bi bi-paperclip px-1 vsyach"></i>
+                                    <i class="bi bi-link px-1 vsyach"></i>
+                                    <i class="bi bi-emoji-smile px-1 vsyach"></i>
+                                    <i class="bi bi-image px-1 vsyach"></i>
+                                    <i class="bi bi-three-dots-vertical px-1 vsyach"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <i class="bi bi-trash pe-1 vsyach"></i>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+
+    
+    
+    
+    
+
+    
+
+
+    
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'mail/inbox.js' %}"></script>
+{% endblock %}
